@@ -1,6 +1,8 @@
 name: 'WP VIP Git Sync Action'
 description: 'Sync defined branches between two repositories to align with a specific workflow.'
 author: 'Capgemini MACS'
+icon: 'circle'
+color: 'black'
 runs:
   using: 'docker'
   image: 'Dockerfile'

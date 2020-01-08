@@ -2,8 +2,8 @@ FROM alpine
 
 LABEL "com.github.actions.name"="WP VIP Git Sync Action"
 LABEL "com.github.actions.description"="Sync defined branches between two repositories to align with a specific workflow."
-LABEL "com.github.actions.icon"="git-branch"
-LABEL "com.github.actions.color"="blue"
+LABEL "com.github.actions.icon"="circle"
+LABEL "com.github.actions.color"="black"
 
 LABEL "repository"="https://github.com/capgemini-macs/wpcomvip-git-sync"
 LABEL "homepage"="https://github.com/capgemini-macs/wpcomvip-git-sync"
