@@ -34,7 +34,9 @@ git remote add destination "$DESTINATION_REPO"
 
 if ! echo $SOURCE_REPO | grep 'wpcomvip'
 then
-  git push destination "refs/remotes/source/review-*:refs/heads/*" -f
+  git push destination "refs/remotes/source/review-master/*:refs/heads/review-master/*" -f
+  git push destination "refs/remotes/source/review-preprod/*:refs/heads/review-preprod/*" -f
+  git push destination "refs/remotes/source/review-develop/*:refs/headsreview-develop/*" -f
 else
   git push destination "refs/remotes/source/master:refs/heads/master" -f
   git push destination "refs/remotes/source/preprod:refs/heads/preprod" -f
