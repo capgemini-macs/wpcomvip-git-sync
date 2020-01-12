@@ -13,7 +13,12 @@ A GitHub Action for syncing between two independent repositories using **force p
 ```
 # File: .github/workflows/repo-sync.yml
 
-on: push
+on:
+  push:
+    branches:    
+    - 'master'
+    - 'preprod'
+    - 'develop'
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
