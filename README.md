@@ -13,13 +13,18 @@ A GitHub Action for syncing between two independent repositories using **force p
 ```
 # File: .github/workflows/repo-sync.yml
 
-on: push
+on:
+  push:
+    branches:    
+    - 'master'
+    - 'preprod'
+    - 'develop'
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
     steps:
     - name: repo-sync
-      uses: capgemini-macs/wpcomvip-git-sync@v0.1.3
+      uses: capgemini-macs/wpcomvip-git-sync@v0.1.4
       env:
         SOURCE_REPO: ""
         DESTINATION_REPO: ""
