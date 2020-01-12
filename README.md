@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: repo-sync
-      uses: capgemini-macs/wpcomvip-git-sync@v0.1.3
+      uses: capgemini-macs/wpcomvip-git-sync@v0.1.4
       env:
         SOURCE_REPO: ""
         DESTINATION_REPO: ""
