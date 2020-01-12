@@ -36,7 +36,7 @@ if ! echo $SOURCE_REPO | grep 'wpcomvip'
 then
   git push destination "refs/remotes/source/review-master/*:refs/heads/review-master/*" -f
   git push destination "refs/remotes/source/review-preprod/*:refs/heads/review-preprod/*" -f
-  git push destination "refs/remotes/source/review-develop/*:refs/headsreview-develop/*" -f
+  git push destination "refs/remotes/source/review-develop/*:refs/heads/review-develop/*" -f
   git push destination "refs/remotes/source/hotfix/*:refs/heads/hotfix/*" -f
   git push destination "refs/remotes/source/maintenance/*:refs/heads/maintenance/*" -f
 else
