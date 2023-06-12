@@ -25,7 +25,7 @@ then
 fi
 
 echo "Cloning source repo: $SOURCE_REPO..."
-git clone "$SOURCE_REPO":"$BRANCH" --origin source
+git clone "$SOURCE_REPO" --origin source
 
 SOURCE_DIR=`basename "$SOURCE_REPO" | sed s/".git"//`
 echo "Change DIR to $SOURCE_DIR..."
