@@ -2,8 +2,6 @@
 
 set -e
 
-SOURCE_REPO=$1
-DESTINATION_REPO=$2
 
 if ! echo $SOURCE_REPO | grep '.git'
 then
@@ -26,21 +24,19 @@ then
   fi
 fi
 
-echo "SOURCE=$SOURCE_REPO:$SOURCE_BRANCH"
-echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
+echo "Cloning source repo: $SOURCE_REPO..."
+git clone "$SOURCE_REPO":"$BRANCH" --origin source
 
-git clone "$SOURCE_REPO" --origin source && cd `basename "$SOURCE_REPO" .git`
+SOURCE_DIR=`basename "$SOURCE_REPO" | sed s/".git"//`
+echo "Change DIR to $SOURCE_DIR..."
+cd $SOURCE_DIR
+
+echo "Add destination remote $DESTINATION_REPO..."
 git remote add destination "$DESTINATION_REPO"
 
 if ! echo $SOURCE_REPO | grep 'wpcomvip'
 then
-  git push destination "refs/remotes/source/review-master/*:refs/heads/review-master/*" -f
-  git push destination "refs/remotes/source/review-preprod/*:refs/heads/review-preprod/*" -f
-  git push destination "refs/remotes/source/review-develop/*:refs/heads/review-develop/*" -f
-  git push destination "refs/remotes/source/hotfix/*:refs/heads/hotfix/*" -f
-  git push destination "refs/remotes/source/maintenance/*:refs/heads/maintenance/*" -f
-else
-  git push destination "refs/remotes/source/master:refs/heads/master" -f
-  git push destination "refs/remotes/source/preprod:refs/heads/preprod" -f
-  git push destination "refs/remotes/source/develop:refs/heads/develop" -f
+  echo "Pushing to "$DESTINATION_REPO" branch "$BRANCH"..."
+  git push destination "refs/remotes/source/$BRANCH:refs/heads/$BRANCH" -f -v
 fi
+

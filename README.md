@@ -17,8 +17,8 @@ on:
   push:
     branches:    
     - 'master'
-    - 'preprod'
     - 'develop'
+
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
@@ -28,17 +28,11 @@ jobs:
       env:
         SOURCE_REPO: ""
         DESTINATION_REPO: ""
+        BRANCH: ""
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      with:
-        args: $SOURCE_REPO $DESTINATION_REPO
+
 ```
 `SSH_PRIVATE_KEY` can be omitted if using authenticated HTTPS repo clone urls like `https://username:access_token@github.com/username/repository.git`.
-
-### Docker
-```
-docker run --rm -e "SSH_PRIVATE_KEY=$(cat ~/.ssh/id_rsa)" $(docker build -q .) \
-  $SOURCE_REPO $DESTINATION_REPO
-```
 
 ## Author
 Based on [git-sync] by [Wei He](https://github.com/wei) _github@weispot.com_
