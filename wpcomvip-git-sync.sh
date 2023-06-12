@@ -29,7 +29,7 @@ fi
 echo "SOURCE=$SOURCE_REPO:$SOURCE_BRANCH"
 echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 
-git clone "$SOURCE_REPO" --origin source && cd `basename "$SOURCE_REPO" .git`
+git clone "$SOURCE_REPO" --origin source && cd `basename "$SOURCE_REPO"`
 git remote add destination "$DESTINATION_REPO"
 
 if ! echo $SOURCE_REPO | grep 'wpcomvip'
@@ -40,5 +40,5 @@ then
   git push destination "refs/remotes/source/hotfix/*:refs/heads/hotfix/*" -f
   git push destination "refs/remotes/source/maintenance/*:refs/heads/maintenance/*" -f
 else
-  git push -f
+  git push destination -f
 fi
