@@ -40,7 +40,5 @@ then
   git push destination "refs/remotes/source/hotfix/*:refs/heads/hotfix/*" -f
   git push destination "refs/remotes/source/maintenance/*:refs/heads/maintenance/*" -f
 else
-  git push destination "refs/remotes/source/master:refs/heads/master" -f
-  git push destination "refs/remotes/source/preprod:refs/heads/preprod" -f
-  git push destination "refs/remotes/source/develop:refs/heads/develop" -f
+  git push -f
 fi
