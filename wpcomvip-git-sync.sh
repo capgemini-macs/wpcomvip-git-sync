@@ -2,7 +2,7 @@
 
 set -e
 
-if [ "$SOURCE_REPO" == "$TRIGGERED_BY" ]; then
+if [ "$DESTINATION_REPO" == "$TRIGGERED_BY" ]; then
   echo "Ignoring triggered by $TRIGGERED_BY. Exiting..."
   exit 0
 fi
