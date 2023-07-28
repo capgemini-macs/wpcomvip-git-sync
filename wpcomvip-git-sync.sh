@@ -2,6 +2,9 @@
 
 set -e
 
+if [ "$SOURCE_REPO" == "$TRIGGERED_BY" ]; then
+  echo "Ignoring triggered by $TRIGGERED_BY. Exiting..."
+  exit 0
 
 if ! echo $SOURCE_REPO | grep '.git'
 then
