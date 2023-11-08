@@ -1,0 +1,35 @@
+name: MACS Briefcase Update
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  briefcase-update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+      with:
+        path: source
+    - name: Checkout target repository
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ secrets.macs_briefcase }}
+        token: ${{ secrets.gh_bot_pat }}
+        path: target
+    - name: Prepare and push Briefcase
+      run: |
+          [ ! -d "target/projects/${{ github.event.repository.name }}" ] && mkdir -p "target/projects/${{ github.event.repository.name }}"
+          rsync -zarv --prune-empty-dirs --include='*/' --include='*.md' --exclude='*' source/ target/projects/${{ github.event.repository.name }}/
+          cd target
+          git config --global user.name "${{ secrets.gh_bot_name }}"
+          git config --global user.email "${{ secrets.gh_bot_email }}"
+          git add .
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Briefcase updated from ${{ github.repository }}"
+            git push --force
+          else
+            echo "No changes detected. Exiting without pushing."
+          fi
