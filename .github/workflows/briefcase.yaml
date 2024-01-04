@@ -24,6 +24,10 @@ jobs:
           [ ! -d "target/projects/${{ github.event.repository.name }}" ] && mkdir -p "target/projects/${{ github.event.repository.name }}"
           rsync -zarv --prune-empty-dirs --include='*/' --include='*.md' --exclude='*' source/ target/projects/${{ github.event.repository.name }}/
           cd target
+          find . -type d -name "vendor" -exec rm -rf {} +
+          find . -type d -name "autoload" -exec rm -rf {} +
+          find . -type d -name "lib" -exec rm -rf {} +
+          find . -type d -name "Pods" -exec rm -rf {} +
           git config --global user.name "${{ secrets.gh_bot_name }}"
           git config --global user.email "${{ secrets.gh_bot_email }}"
           git add .
